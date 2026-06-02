@@ -1,18 +1,21 @@
-print('-------------------------------------------------- IFB Asa-Sul -------------------------------------------------- ')
-print('------------------------------------------------ Sistema de Notas --------------------------------------------------\n')
+print('                                                  IFB Asa-Sul                                                     ')
+print('                                                Sistema de Notas                                                 \n')
 
 def cadastrar_dados(): #função para cadastro de dados como aluno, nivel de escolaridade e disciplinas
 
 
     aluno = input('Digite o nome do aluno: ') #nome do aluno
-    nivel = input('Qual nível de ensino? [Fundamental II / Médio]: ') #nivel de escolaridade
+    nivel = input('Qual nível de ensino? [Fundamental 2 / Medio]: ') #nivel de escolaridade
+    while nivel not in ['Fundamental 2', 'Medio']:
+        print('Nível de ensino inválido. Por favor, escolha entre "Fundamental 2" ou "Medio".')
+        nivel = input('Qual nível de ensino? [Fundamental 2 / Medio]: ')
     quantidade = int(input('Quantas matérias deseja cadastrar? ')) #quantidade de matérias que ele deseja cadastrar
 
     disciplinas = [] #lista para guardar as disciplinas vindas do dicionário
 
     for c in range(quantidade): #loop para rodar pedindo dados da disciplina quantas vezes o usuario escolher na variável 'quantidade'
         
-        print(f'Disciplina {c + 1}') #cadastro de disciplinas
+        print(f'\nDisciplina {c + 1}\n') #cadastro de disciplinas
         nome_disciplina = input('Digite o nome da disciplina: ')
         nota = float(input('Nota final: '))
         faltas = int(input('Quantidade de faltas: '))
@@ -72,16 +75,21 @@ def gerar_relatorio_final(aluno, nivel, disciplinas, media, total_faltas): #fun�
 
     if media >= 6 and total_faltas < 16:
         print('Aprovado!\n')
-        print('Nota final maior ou igual a nota mínima')
-        print('Frequencia maior ou igual a 75%')
+        print('Nota final superior a nota mínima')
+        print('Frequencia superior a 75%')
+
+    elif media >= 6 and total_faltas == 16:
+        print('Aprovado!\n')
+        print('Nota final superior a nota mínima')
+        print('Frequencia de 75%')
 
     elif media >= 6 and total_faltas > 16:
         print('Reprovado!\n')
         print('Frequencia inferior a 75%.')
 
     else:
-        print('Reprovado por nota e frequencia!\n')
-        print('Nota final menor que a nota mínima.')
+        print('Reprovado por falta de nota e frequencia!\n')
+        print('Nota final inferior a nota mínima.')
         print('Frequencia inferior a 75%.')
 
 
